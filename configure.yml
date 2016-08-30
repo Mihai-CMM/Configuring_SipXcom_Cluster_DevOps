@@ -1,0 +1,15 @@
+---
+- hosts: uc1
+  tasks:
+    - name: Configuring Primary server
+      script: configure_master.sh
+
+- hosts: uc2
+  tasks:
+  - name: Configuring secondary server
+    shell: sipxecs-setup --noui --master_address 10.3.0.150 --location_id 2
+    
+- hosts: uc3
+  tasks:
+  - name: Configuring third server
+    shell: sipxecs-setup --noui --master_address 10.3.0.150 --location_id 3
